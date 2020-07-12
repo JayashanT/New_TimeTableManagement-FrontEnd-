@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {Table,Form,Button,Modal} from 'react-bootstrap'
+import axios from 'axios'
 
 
 export class Timetable2 extends Component {
@@ -8,8 +9,9 @@ export class Timetable2 extends Component {
     // var a='';
         this.state = {
              show:false,
+             subjects:[],
             //  subject:{name:'sdvv',time:''}
-             subject_1:'ss',subject_9:'',subject_17:'',subject_25:'',subject_33:'',
+             subject_1:'',subject_9:'',subject_17:'',subject_25:'',subject_33:'',
              subject_2:'',subject_10:'',subject_18:'',subject_26:'',
              subject_3:'',subject_11:'',subject_19:'',subject_27:'',
              subject_4:'',subject_12:'',subject_20:'',subject_28:'',
@@ -23,10 +25,26 @@ export class Timetable2 extends Component {
         }
     }
 
+    componentDidMount(){
+        axios.get('https://localhost:44396/api/subject')
+        .then(response=>{
+            this.setState({
+                subjects:response.data
+            })
+           
+  
+        })
+        .catch(err=>{
+            console.log(err)
+           
+        })
+    }
+
+
 handleClose = () => this.setState({show:false});
 handleShow = (a) => {
     //  this.a=value
-    this.setState({show:true,})
+    this.setState({show:true})
 
 };
 
@@ -47,7 +65,7 @@ onChange=(e)=> {
 // const b=true
 // const [show, setShow] = useState(false);
 
-
+const subjectList=this.state.subjects.map(subject=><option key={subject.id}>{subject.name}</option>)
 
 
 
@@ -57,7 +75,15 @@ const fillForm=(
 <Form onSubmit={this.onSubmit }>
 <Form.Group controlId="formBasicEmail">
   <Form.Label>Subject</Form.Label>
-  <Form.Control type="text" placeholder="Enter Subjec name" name='a' value={this.state.a} onChange={this.onChange} />
+  <Form.Control as="select"
+                  name='subject_1'
+                  value={this.state.subject_1}
+                  onChange={this.onChange}
+                  >
+                      {/* <option>Default select</option> */}
+                      {subjectList}
+                      
+                     </Form.Control>
   <Form.Text className="text-muted">
  
   </Form.Text>
@@ -69,7 +95,7 @@ const fillForm=(
 </Form.Group> */}
 
 <Button variant="primary" type="submit">
-  Submit
+  Add
 </Button>
 </Form>
 )

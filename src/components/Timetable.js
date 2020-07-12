@@ -48,7 +48,7 @@ this.props.history.push(`/timeTable2`)
 
 
     render() {
-       const userList=this.state.classes.map(clz=><option key={clz.id}>{clz.name}</option>)
+       const clzList=this.state.classes.map(clz=><option key={clz.id}>{clz.name}</option>)
         return (
            < div className="container">
             <div className="row">
@@ -88,7 +88,7 @@ this.props.history.push(`/timeTable2`)
                   onChange={this.onChange}
                   >
                       {/* <option>Default select</option> */}
-                      {userList}
+                      {clzList}
                       
                      </Form.Control>
                     <br />
