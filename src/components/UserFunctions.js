@@ -5,7 +5,8 @@ export const register = (newUser,onSuccess) => {
     .post('https://localhost:44396/api/user',newUser)
     .then(response => {
       // console.log('Registered')
-      // console.log(response)
+      
+      
       onSuccess();
     }).catch(err=>{
       console.log("eeeeee")
@@ -14,14 +15,14 @@ export const register = (newUser,onSuccess) => {
 
 export const login = (user,onSuccess,onFail) => {
   return axios
-    .post('https://localhost:44396/api/login', {
+    .post('https://localhost:44396/api/user/Login', {
       Staff_Id: user.Staff_Id,
       password: user.password
     })
     .then(response => {
-      console.log("aaa")
+      // console.log("aaa")
    
-      console.log("BB")
+      // console.log("BB")
       localStorage.setItem('usertoken', response.data.token)
      
       if(response.status==200){

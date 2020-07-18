@@ -10,10 +10,15 @@ import Register from './components/Register'
 import Profile from './components/Profile'
 import Timetable from './components/Timetable'
 import Timetable2 from './components/Timetable2'
+import ViewTimeTable from './components/ViewTimeTable'
+import Admin from './components/Admin'
+import AllUsers from './components/AllUsers'
+import Subject from './components/Subject'
 
 import Error from './components/Error'
 
 import {ToastProvider} from 'react-toast-notifications'
+
 
 class App extends Component {
   render() {
@@ -31,6 +36,10 @@ class App extends Component {
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/timeTable" component={Timetable} />
             <Route exact path="/timeTable2" component={Timetable2} />
+            <Route exact path="/viewTimeTable" component={ViewTimeTable} />
+            <Route exact path="/admin" component={Admin} />
+            <Route exact path="/allUers" component={AllUsers} />
+            <Route exact path="/subjects" component={Subject} />
             <Route component={Error}/>
           {/* </div> */}
           </Switch>
