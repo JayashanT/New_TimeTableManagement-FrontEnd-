@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import {Form} from 'react-bootstrap'
+
 import axios from 'axios'
+import {Table,Form} from 'react-bootstrap'
 
 
 export class ViewTimeTable extends Component {
@@ -11,16 +12,18 @@ export class ViewTimeTable extends Component {
       
         this.state = {
            classes:[],
-          
+         a:'gjhkh',
            
            grade:1,
            classId:0,
+           slots:[],
+           slots2:[]
            
         }
       }
 
 
-
+a;
     onChange=(e)=>{
  
   
@@ -33,9 +36,13 @@ export class ViewTimeTable extends Component {
        console.log(this.state)
        axios.get(`https://localhost:44396/api/TimeTable/GetTimeTableDetailsByClassId/${this.state.classId}`)
        .then(res=>{
-         console.log(res.data)
+         
+
+         this.setState({slots:res.data.slot},()=>console.log(this.state.slots))
+
+      //  console.log("aaa",this.state.slots2)
+
         
-        // console.log(res.data[0].id)
        })
           
         }
@@ -125,6 +132,55 @@ export class ViewTimeTable extends Component {
                 </form>
               </div>
             </div>
+
+
+{/* 
+******************************************table********************************** */}
+
+<div>
+               <Table responsive Table striped bordered hover variant="light">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Time Slot</th>
+      <th>Monday</th>
+      <th>Tuesday</th>
+      <th>Wedesday</th>
+      <th>Thursday</th>
+      <th>Friday</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>7.30-8.15</td>
+<td onClick={()=>{this.setState({a: this.state.slots.find(({period_No})=>period_No==='1_2').subject_Id},()=>console.log("dhdj"))}}>{this.state.a}</td>
+      <td onClick={()=>this.handleShow(2,'2_1')}></td>
+      <td onClick={()=>this.handleShow(3,'3_1')}></td>
+      <td onClick={()=>this.handleShow(4,'4_1')}></td>
+      <td onClick={()=>this.handleShow(5,'5_1')}></td>
+      
+    </tr>
+    {/* <tr>
+      <td>2</td>
+      <td>8.15-9.00</td>
+      <td onClick={()=>this.handleShow(7,'2_2')}>{this.state.subjects4[7]}</td>
+      <td onClick={()=>this.handleShow(8,'3_2')}>{this.state.subjects4[8]}</td>
+      <td onClick={()=>this.handleShow(6,'1_2')}>{this.state.subjects4[6]}</td>
+      <td onClick={()=>this.handleShow(9,'4_2')}>{this.state.subjects4[9]}</td>
+      <td onClick={()=>this.handleShow(10,'5_2')}>{this.state.subjects4[10]}</td>
+    </tr> */}
+</tbody>
+
+</Table>
+</div>
+
+
+
+
+
+{/* 
+******************************************table End********************************** */}
            
           </div>
                 

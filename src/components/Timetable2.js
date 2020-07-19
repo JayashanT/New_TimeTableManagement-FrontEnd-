@@ -113,11 +113,12 @@ onSubmit=(e)=>{
 
 
 onChange=(e,index)=> {
+  console.log("GGGGGGG")
 const subId=e.target.value;
   axios.get(`https://localhost:44396/api/subject/${subId}`)
   .then(res=>{
-    // console.log(res.data[0].name)
-    this.state.subjects4[index]=res.data[0].name;
+     console.log('ssss',res.data.name)
+    this.state.subjects4[index]=res.data.name;
     
   }).catch(err=>{console.log(err)})
   
