@@ -13,6 +13,10 @@ export class ViewTimeTable extends Component {
         this.state = {
            classes:[],
          a:'gjhkh',
+         b:'',
+         c:'',
+         d:'',
+         e:'',
            
            grade:1,
            classId:0,
@@ -67,6 +71,27 @@ a;
             this.setState({errorMsg:"This is get request Error"})
         })
       }
+
+
+
+      //********************************************* */
+
+      viewTimeTable=()=>{
+        this.setState({
+          a: this.state.slots.find(({period_No})=>period_No==='1_1').subject_Id,
+          b: this.state.slots.find(({period_No})=>period_No==='2_1').subject_Id,
+          c: this.state.slots.find(({period_No})=>period_No==='3_1').subject_Id,
+          d: this.state.slots.find(({period_No})=>period_No==='4_1').subject_Id,
+          e: this.state.slots.find(({period_No})=>period_No==='5_1').subject_Id,
+      
+      
+      })
+
+      }
+
+
+
+      //************************************************* */
 
 
     render() {
@@ -154,11 +179,12 @@ a;
     <tr>
       <td>1</td>
       <td>7.30-8.15</td>
-<td onClick={()=>{this.setState({a: this.state.slots.find(({period_No})=>period_No==='1_2').subject_Id},()=>console.log("dhdj"))}}>{this.state.a}</td>
-      <td onClick={()=>this.handleShow(2,'2_1')}></td>
-      <td onClick={()=>this.handleShow(3,'3_1')}></td>
-      <td onClick={()=>this.handleShow(4,'4_1')}></td>
-      <td onClick={()=>this.handleShow(5,'5_1')}></td>
+{/* <td onClick={()=>{this.setState({a: this.state.slots.find(({period_No})=>period_No==='2_1').subject_Id},()=>console.log("dhdj"))}}>{this.state.a}</td> */}
+<td onClick={this.viewTimeTable}>{this.state.a}</td>
+      <td onClick={()=>this.handleShow(2,'2_1')}>{this.state.b}</td>
+      <td onClick={()=>this.handleShow(3,'3_1')}>{this.state.c}</td>
+      <td onClick={()=>this.handleShow(4,'4_1')}>{this.state.d}</td>
+      <td onClick={()=>this.handleShow(5,'5_1')}>{this.state.e}</td>
       
     </tr>
     {/* <tr>

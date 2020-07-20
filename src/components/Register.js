@@ -33,7 +33,7 @@ class Register extends Component {
       Staff_Id: this.state.staff_id,
       Contact_No :this.state.contact_no,
       Password: this.state.password,
-      Role_Id :1
+      Role_Id :2
     }
     const onSuccess=()=>{
   

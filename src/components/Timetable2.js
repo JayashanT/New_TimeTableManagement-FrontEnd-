@@ -249,9 +249,9 @@ const fillForm=(
     <tr>
       <td>2</td>
       <td>8.15-9.00</td>
+      <td onClick={()=>this.handleShow(6,'1_2')}>{this.state.subjects4[6]}</td>
       <td onClick={()=>this.handleShow(7,'2_2')}>{this.state.subjects4[7]}</td>
       <td onClick={()=>this.handleShow(8,'3_2')}>{this.state.subjects4[8]}</td>
-      <td onClick={()=>this.handleShow(6,'1_2')}>{this.state.subjects4[6]}</td>
       <td onClick={()=>this.handleShow(9,'4_2')}>{this.state.subjects4[9]}</td>
       <td onClick={()=>this.handleShow(10,'5_2')}>{this.state.subjects4[10]}</td>
     </tr>

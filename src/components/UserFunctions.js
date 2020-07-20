@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 export const register = (newUser,onSuccess) => {
+  console.log(newUser)
   return axios
     .post('https://localhost:44396/api/user',newUser)
     .then(response => {
@@ -9,6 +10,7 @@ export const register = (newUser,onSuccess) => {
       
       onSuccess();
     }).catch(err=>{
+      console.log(err)
       console.log("eeeeee")
     })
 }

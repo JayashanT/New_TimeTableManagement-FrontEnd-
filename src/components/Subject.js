@@ -111,7 +111,7 @@ onAddNewSubject=(e)=>{
       name:this.state.subjectName,
       medium:this.state.medium 
     }
-
+console.log(newSubject)
     axios.post('https://localhost:44396/api/subject',newSubject)
     .then(res=>{
         console.log("Sucess")
