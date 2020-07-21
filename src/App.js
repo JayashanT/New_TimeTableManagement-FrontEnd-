@@ -15,6 +15,8 @@ import Admin from './components/Admin'
 import AllUsers from './components/AllUsers'
 import Subject from './components/Subject'
 
+import Resources from './components/Resource/Resources'
+
 import Error from './components/Error'
 
 import {ToastProvider} from 'react-toast-notifications'
@@ -40,6 +42,7 @@ class App extends Component {
             <Route exact path="/admin" component={Admin} />
             <Route exact path="/allUers" component={AllUsers} />
             <Route exact path="/subjects" component={Subject} />
+            <Route exact path="/resources" component={Resources} />
             <Route component={Error}/>
           {/* </div> */}
           </Switch>

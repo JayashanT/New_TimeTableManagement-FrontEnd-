@@ -110,9 +110,11 @@ const useStyles = makeStyles((theme) => ({
         Modify Subjets
       </Button2>
       </Link>
+      <Link to="/resources" className="nav-link">
       <Button2 variant="contained" lassName={classes.button}>
         Modify Resources
       </Button2>
+      </Link>
       {/* <Button2 variant="contained" href="#contained-buttons" className={classes.button}>
         Link
       </Button2> */}
