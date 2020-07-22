@@ -48,7 +48,7 @@ class Profile extends Component {
 
 const teacherViewMytable=(
   <div>
-  <td><Link to='' className="nav-link">
+  <td><Link to='/teacherTimetable' className="nav-link">
   <Button variant="info">View My Time Table</Button>
 </Link></td>
 </div>

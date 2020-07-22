@@ -31,7 +31,7 @@ export class ViewTimeTable extends Component {
       }
 
 
-a;
+
     onChange=(e)=>{
  
   
@@ -137,6 +137,7 @@ a;
       
       
       })
+
 
       }
 
