@@ -12,6 +12,7 @@ class Profile extends Component {
       first_name: '',
       contact_no: '',
       staff_id: '',
+      role_id:0,
       errors: {}
     }
   }
@@ -22,11 +23,44 @@ class Profile extends Component {
     this.setState({
       first_name: decoded.Name,
       contact_no: decoded.Contact_No,
-      staff_id: decoded.Staff_Id
+      staff_id: decoded.Staff_Id,
+      role_id:decoded.Role_Id
     })
   }
 
+
   render() {
+
+
+    const adminUSer=(
+    <div>
+    
+ <td><Link to="/timeTable" className="nav-link">
+                <Button variant="success">Create Time Table</Button>
+          </Link></td>
+
+<td><Link to="/admin" className="nav-link">
+    <Button variant="warning">View Admin Dashboard</Button>
+</Link></td>
+</div>
+)
+
+
+const teacherViewMytable=(
+  <div>
+  <td><Link to='' className="nav-link">
+  <Button variant="info">View My Time Table</Button>
+</Link></td>
+</div>
+)
+
+
+
+
+
+
+
+
     return (
       <div className="container">
         <div className="jumbotron mt-5">
@@ -50,16 +84,12 @@ class Profile extends Component {
               <tr>
                 <td></td>
                 <td></td>
-                <td><Link to="/timeTable" className="nav-link">
-                <Button variant="success">Create Time Table</Button>
-          </Link></td>
-
-          <td><Link to="/viewTimeTable" className="nav-link">
-                <Button variant="secondary">View Time Tables</Button>
-          </Link></td>
-          <td><Link to="/admin" className="nav-link">
-                <Button variant="warning">View Admin Dashboard</Button>
-          </Link></td>
+                <td><Link to="/viewTimeTable" className="nav-link">
+                    <Button variant="secondary">View Time Tables</Button>
+                   </Link></td>
+             {this.state.role_id==1 ? adminUSer :null}
+             {this.state.role_id==2 ? teacherViewMytable:null}
+          
               </tr>
             </tbody>
           </table>
