@@ -21,6 +21,7 @@ import Error from './components/Error'
 
 import {ToastProvider} from 'react-toast-notifications'
 import TeacherTimeTable from './components/TeacherTimeTable'
+import UpdateTimeTable from './components/UpdateTimeTable'
 
 
 class App extends Component {
@@ -45,6 +46,7 @@ class App extends Component {
             <Route exact path="/subjects" component={Subject} />
             <Route exact path="/resources" component={Resources} />
             <Route exact path="/teacherTimetable" component={TeacherTimeTable} />
+            <Route exact path="/UpadteTimeTable" component={UpdateTimeTable} />
             <Route component={Error}/>
           {/* </div> */}
           </Switch>

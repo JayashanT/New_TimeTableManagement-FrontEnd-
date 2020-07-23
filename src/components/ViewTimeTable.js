@@ -23,7 +23,7 @@ export class ViewTimeTable extends Component {
            grade:1,
            classId:0,
            slots:[],
-           slots2:[],
+          // slots2:[],
 
            tableDisplay:false,
            
@@ -88,27 +88,76 @@ export class ViewTimeTable extends Component {
 
       viewTimeTable=()=>{
         this.setState({
-          a1: this.state.slots.find(({period_No})=>period_No==='1_1').subject_Name,
-          a2: this.state.slots.find(({period_No})=>period_No==='2_1').subject_Name,
-          a3: this.state.slots.find(({period_No})=>period_No==='3_1').subject_Name,
-          a4: this.state.slots.find(({period_No})=>period_No==='4_1').subject_Name,
-          a5: this.state.slots.find(({period_No})=>period_No==='5_1').subject_Name,
-          a6: this.state.slots.find(({period_No})=>period_No==='1_2').subject_Name,
-          a7: this.state.slots.find(({period_No})=>period_No==='2_2').subject_Name,
-          a8: this.state.slots.find(({period_No})=>period_No==='3_2').subject_Name,
-          a9: this.state.slots.find(({period_No})=>period_No==='4_2').subject_Name,
-          a10: this.state.slots.find(({period_No})=>period_No==='5_2').subject_Name,
 
 
-          b1: this.state.slots.find(({period_No})=>period_No==='1_3').subject_Name,
-          b2: this.state.slots.find(({period_No})=>period_No==='2_3').subject_Name,
-          b3: this.state.slots.find(({period_No})=>period_No==='3_3').subject_Name,
-          b4: this.state.slots.find(({period_No})=>period_No==='4_3').subject_Name,
-          b5: this.state.slots.find(({period_No})=>period_No==='5_3').subject_Name,
-          b6: this.state.slots.find(({period_No})=>period_No==='1_4').subject_Name,
-          b7: this.state.slots.find(({period_No})=>period_No==='2_4').subject_Name,
-          b8: this.state.slots.find(({period_No})=>period_No==='3_4').subject_Name,
-          b9: this.state.slots.find(({period_No})=>period_No==='4_4').subject_Name,
+        a1:this.state.slots.find(({period_No})=>period_No==='1_1')?this.state.slots.find(({period_No})=>period_No==='1_1').subject_Name:null,
+        a2:this.state.slots.find(({period_No})=>period_No==='2_1')?this.state.slots.find(({period_No})=>period_No==='2_1').subject_Name:null,
+        a3:this.state.slots.find(({period_No})=>period_No==='3_1')?this.state.slots.find(({period_No})=>period_No==='3_1').subject_Name:null,
+        a4:this.state.slots.find(({period_No})=>period_No==='4_1')?this.state.slots.find(({period_No})=>period_No==='4_1').subject_Name:null,
+        a5:this.state.slots.find(({period_No})=>period_No==='5_2')?this.state.slots.find(({period_No})=>period_No==='5_1').subject_Name:null,
+        a6:this.state.slots.find(({period_No})=>period_No==='1_2')?this.state.slots.find(({period_No})=>period_No==='1_2').subject_Name:null,
+        a7:this.state.slots.find(({period_No})=>period_No==='2_2')?this.state.slots.find(({period_No})=>period_No==='2_2').subject_Name:null,
+        a8:this.state.slots.find(({period_No})=>period_No==='3_2')?this.state.slots.find(({period_No})=>period_No==='3_2').subject_Name:null,
+        a9:this.state.slots.find(({period_No})=>period_No==='4_2')?this.state.slots.find(({period_No})=>period_No==='4_2').subject_Name:null,
+        a10:this.state.slots.find(({period_No})=>period_No==='5_2')?this.state.slots.find(({period_No})=>period_No==='5_2').subject_Name:null,
+
+
+        b1:this.state.slots.find(({period_No})=>period_No==='1_3')?this.state.slots.find(({period_No})=>period_No==='1_3').subject_Name:null,
+        b2:this.state.slots.find(({period_No})=>period_No==='2_3')?this.state.slots.find(({period_No})=>period_No==='2_3').subject_Name:null,
+        b3:this.state.slots.find(({period_No})=>period_No==='3_3')?this.state.slots.find(({period_No})=>period_No==='3_3').subject_Name:null,
+        b4:this.state.slots.find(({period_No})=>period_No==='4_3')?this.state.slots.find(({period_No})=>period_No==='4_3').subject_Name:null,
+        b5:this.state.slots.find(({period_No})=>period_No==='5_3')?this.state.slots.find(({period_No})=>period_No==='5_3').subject_Name:null,
+        b6:this.state.slots.find(({period_No})=>period_No==='1_4')?this.state.slots.find(({period_No})=>period_No==='1_4').subject_Name:null,
+        b7:this.state.slots.find(({period_No})=>period_No==='2_4')?this.state.slots.find(({period_No})=>period_No==='2_4').subject_Name:null,
+        b8:this.state.slots.find(({period_No})=>period_No==='3_4')?this.state.slots.find(({period_No})=>period_No==='3_4').subject_Name:null,
+        b9:this.state.slots.find(({period_No})=>period_No==='4_4')?this.state.slots.find(({period_No})=>period_No==='4_4').subject_Name:null,
+        b1: this.state.slots.find(({period_No})=>period_No==='5_4')?this.state.slots.find(({period_No})=>period_No==='5_4').subject_Name:null,
+
+     
+        
+       c1: this.state.slots.find(({period_No})=>period_No==='1_5')?this.state.slots.find(({period_No})=>period_No==='1_5').subject_Name:null,
+       c2: this.state.slots.find(({period_No})=>period_No==='2_5')?this.state.slots.find(({period_No})=>period_No==='2_5').subject_Name:null,
+       c3: this.state.slots.find(({period_No})=>period_No==='3_5')?this.state.slots.find(({period_No})=>period_No==='3_5').subject_Name:null,
+       c4: this.state.slots.find(({period_No})=>period_No==='4_5')?this.state.slots.find(({period_No})=>period_No==='4_5').subject_Name:null,
+       c5: this.state.slots.find(({period_No})=>period_No==='5_5')?this.state.slots.find(({period_No})=>period_No==='5_5').subject_Name:null,
+       c6: this.state.slots.find(({period_No})=>period_No==='1_6')?this.state.slots.find(({period_No})=>period_No==='1_6').subject_Name:null,
+       c7: this.state.slots.find(({period_No})=>period_No==='2_6')?this.state.slots.find(({period_No})=>period_No==='2_6').subject_Name:null,
+       c8: this.state.slots.find(({period_No})=>period_No==='3_6')?this.state.slots.find(({period_No})=>period_No==='3_6').subject_Name:null,
+       c9: this.state.slots.find(({period_No})=>period_No==='4_6')?this.state.slots.find(({period_No})=>period_No==='4_6').subject_Name:null,
+       c10: this.state.slots.find(({period_No})=>period_No==='5_6')?this.state.slots.find(({period_No})=>period_No==='5_6').subject_Name:null,
+
+
+       d1: this.state.slots.find(({period_No})=>period_No==='1_7')?this.state.slots.find(({period_No})=>period_No==='1_7').subject_Name:null,
+       d2: this.state.slots.find(({period_No})=>period_No==='2_7')?this.state.slots.find(({period_No})=>period_No==='2_7').subject_Name:null,
+       d3: this.state.slots.find(({period_No})=>period_No==='3_7')?this.state.slots.find(({period_No})=>period_No==='3_7').subject_Name:null,
+       d4: this.state.slots.find(({period_No})=>period_No==='4_7')?this.state.slots.find(({period_No})=>period_No==='4_7').subject_Name:null,
+       d5: this.state.slots.find(({period_No})=>period_No==='5_7')?this.state.slots.find(({period_No})=>period_No==='5_7').subject_Name:null,
+       d6: this.state.slots.find(({period_No})=>period_No==='1_8')?this.state.slots.find(({period_No})=>period_No==='1_8').subject_Name:null,
+       d7: this.state.slots.find(({period_No})=>period_No==='2_8')?this.state.slots.find(({period_No})=>period_No==='2_8').subject_Name:null,
+       d8: this.state.slots.find(({period_No})=>period_No==='3_8')?this.state.slots.find(({period_No})=>period_No==='3_8').subject_Name:null,
+       d9: this.state.slots.find(({period_No})=>period_No==='4_8')?this.state.slots.find(({period_No})=>period_No==='4_8').subject_Name:null,
+       d10: this.state.slots.find(({period_No})=>period_No==='5_8')?this.state.slots.find(({period_No})=>period_No==='5_8').subject_Name:null,
+          // a1: this.state.slots.find(({period_No})=>period_No==='1_1').subject_Name,
+          // a2: this.state.slots.find(({period_No})=>period_No==='2_1').subject_Name,
+          // a3: this.state.slots.find(({period_No})=>period_No==='3_1').subject_Name,
+          // a4: this.state.slots.find(({period_No})=>period_No==='4_1').subject_Name,
+          // a5: this.state.slots.find(({period_No})=>period_No==='5_1').subject_Name,
+          // a6: this.state.slots.find(({period_No})=>period_No==='1_2').subject_Name,
+          // a7: this.state.slots.find(({period_No})=>period_No==='2_2').subject_Name,
+          // a8: this.state.slots.find(({period_No})=>period_No==='3_2').subject_Name,
+          // a9: this.state.slots.find(({period_No})=>period_No==='4_2').subject_Name,
+          // a10: this.state.slots.find(({period_No})=>period_No==='5_2').subject_Name,
+
+
+          // b1: this.state.slots.find(({period_No})=>period_No==='1_3').subject_Name,
+          // b2: this.state.slots.find(({period_No})=>period_No==='2_3').subject_Name,
+          // b3: this.state.slots.find(({period_No})=>period_No==='3_3').subject_Name,
+          // b4: this.state.slots.find(({period_No})=>period_No==='4_3').subject_Name,
+          // b5: this.state.slots.find(({period_No})=>period_No==='5_3').subject_Name,
+          // b6: this.state.slots.find(({period_No})=>period_No==='1_4').subject_Name,
+          // b7: this.state.slots.find(({period_No})=>period_No==='2_4').subject_Name,
+          // b8: this.state.slots.find(({period_No})=>period_No==='3_4').subject_Name,
+          // b9: this.state.slots.find(({period_No})=>period_No==='4_4').subject_Name,
           // b10: this.state.slots.find(({period_No})=>period_No==='5_4').subject_Name,
 
 
@@ -270,7 +319,7 @@ export class ViewTimeTable extends Component {
                 <form noValidate onSubmit={this.onSubmit}>
               
                
-                  <h1 className="h3 mb-3 font-weight-normal"> View Time table</h1>
+                  <h1 className="h3 mb-3 font-weight-normal"> Choose Time table</h1>
             
                  
 

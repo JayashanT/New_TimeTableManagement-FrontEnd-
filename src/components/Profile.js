@@ -39,6 +39,10 @@ class Profile extends Component {
                 <Button variant="success">Create Time Table</Button>
           </Link></td>
 
+          <td><Link to="/UpadteTimeTable" className="nav-link">
+                <Button variant="success">Upadte Time Table</Button>
+          </Link></td>
+
 <td><Link to="/admin" className="nav-link">
     <Button variant="warning">View Admin Dashboard</Button>
 </Link></td>
