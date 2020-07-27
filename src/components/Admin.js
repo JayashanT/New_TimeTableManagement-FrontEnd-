@@ -95,21 +95,23 @@ const useStyles = makeStyles((theme) => ({
 
 
           <Link to="/allUers" className="nav-link">
-
      <Button2 variant="contained" color="primary" className={classes.button}>
-        
         Users Settings
       </Button2>
       </Link>
 
+      <Link to="/classes" className="nav-link">
       <Button2 variant="contained" className={classes.button}>
         Modify Class
       </Button2>
+      </Link>
+
       <Link to="/subjects" className="nav-link">
       <Button2 variant="contained" className={classes.button}>
         Modify Subjets
       </Button2>
       </Link>
+      
       <Link to="/resources" className="nav-link">
       <Button2 variant="contained" lassName={classes.button}>
         Modify Resources

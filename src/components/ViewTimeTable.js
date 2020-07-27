@@ -2,6 +2,12 @@ import React, { Component } from 'react'
 
 import axios from 'axios'
 import {Table,Form} from 'react-bootstrap'
+import {toast} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
+
+toast.configure();
+
 
 
 export class ViewTimeTable extends Component {
@@ -51,11 +57,12 @@ export class ViewTimeTable extends Component {
            console.log(this.state.slots)
            this.viewTimeTable();
           })
-   
-       
-      //  console.log("aaa",this.state.slots2)
 
-        
+      //  console.log("aaa",this.state.slots2)
+       }).catch(err=>{
+         console.log(err)
+         this.setState({tableDisplay:false})
+        toast.error('Time Table does not exit yet, for this class',{autoClose:5000 })
        })
           
         }
