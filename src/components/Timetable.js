@@ -6,6 +6,7 @@ import {toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import Timetable2 from './Timetable2'
 
+import backgroundImg from './ff.jpg';
 
 toast.configure();
 
@@ -106,10 +107,21 @@ axios.post('https://localhost:44396/api/TimeTable',newTimeTable)
     render() {
 
       const clzList=this.state.classes.map(clz=><option  value={clz.id} key={clz.id}>{clz.name}</option>)
+
+
+      const styles = {
+        backgroundContainer: {
+            backgroundImage: `url(${backgroundImg})`,
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'auto',
+            //backgroundColor:'#E9967A',
+            height:'700px',
+           
+        }}
       {return this.state.visible?
        
          (
-           < div className="container">
+           < div className="container"  style={styles.backgroundContainer}>
             <div className="row">
               <div className="col-md-6 mt-5 mx-auto">
                 <form noValidate onSubmit={this.onSubmit}>

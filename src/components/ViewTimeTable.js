@@ -4,6 +4,7 @@ import axios from 'axios'
 import {Table,Form} from 'react-bootstrap'
 import {toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import backgroundImg from './ee.jpg';
 
 
 toast.configure();
@@ -319,8 +320,18 @@ export class ViewTimeTable extends Component {
 
         const clzList=this.state.classes.map(clz=><option  value={clz.id} key={clz.id}>{clz.name}</option>)
 
+        const styles = {
+          backgroundContainer: {
+              backgroundImage: `url(${backgroundImg})`,
+              backgroundRepeat: 'no-repeat',
+              backgroundSize: 'auto',
+              //backgroundColor:'#E9967A',
+              height:'700px',
+             
+          }}
+
         return (
-            < div className="container">
+            < div className="container" style={styles.backgroundContainer}>
             <div className="row">
               <div className="col-md-6 mt-5 mx-auto">
                 <form noValidate onSubmit={this.onSubmit}>
@@ -378,6 +389,7 @@ export class ViewTimeTable extends Component {
                 </form>
               </div>
             </div>
+            <br></br>
            
           {this.state.tableDisplay? timeTable:null}
 

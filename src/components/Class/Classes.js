@@ -22,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
    padding: theme.spacing(2),
     textAlign: 'center',
     color: theme.palette.text.secondary,
+    backgroundColor:'#E0FFFF'
   },
 }));
 //***************************************************** */
@@ -359,6 +360,18 @@ const clzList2=classes.clzList.map(clz=><option  value={clz.id} key={clz.id}>{cl
         backgroundSize: 'auto',
         backgroundColor:'#E9967A'
     },
+    button:{
+      border: 'none',
+      color: 'white',
+      padding: '15px 32px',
+      textAlign: 'center',
+      textDecoration: 'none',
+      display: 'inline-block',
+      fontSize: '26px',
+      // borderRadius: '8px',
+      // width:'350px',
+      // height:'200px'
+    }
    
 }
 
@@ -373,7 +386,8 @@ const clzList2=classes.clzList.map(clz=><option  value={clz.id} key={clz.id}>{cl
         
        
           <Paper className={classes2.paper}>
-          <Button  onClick={()=>setClasses({...classes,addFormdisplay:!classes.addFormdisplay})}>Add Class</Button>
+          <Button  style={styles.button} variant="success"
+          onClick={()=>setClasses({...classes,addFormdisplay:!classes.addFormdisplay})}>Add Class</Button>
           {classes.addFormdisplay? addClassForm:null}
               </Paper>
    
@@ -382,14 +396,16 @@ const clzList2=classes.clzList.map(clz=><option  value={clz.id} key={clz.id}>{cl
 
         <Grid item xs={4} >
           <Paper className={classes2.paper}>
-          <Button onClick={()=>{ setClasses({...classes,updateFormdisplay:!classes.updateFormdisplay})}}>Change Class</Button>
+          <Button style={styles.button} variant="warning"
+          onClick={()=>{ setClasses({...classes,updateFormdisplay:!classes.updateFormdisplay})}}>Change Class</Button>
           {classes.updateFormdisplay? editClassForm:null}
           </Paper>
         </Grid>
 
         <Grid item xs={4} >
           <Paper className={classes2.paper}>
-          <Button onClick={()=>setClasses({...classes,deleteFormdisplay:!classes.deleteFormdisplay})}>Delete Class</Button>
+          <Button  style={styles.button} variant="danger"
+          onClick={()=>setClasses({...classes,deleteFormdisplay:!classes.deleteFormdisplay})}>Delete Class</Button>
               
               {classes.deleteFormdisplay? deleteClassForm:null}
           </Paper>

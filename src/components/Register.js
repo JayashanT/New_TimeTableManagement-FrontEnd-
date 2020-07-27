@@ -11,16 +11,88 @@ class Register extends Component {
   constructor() {
     super()
     this.state = {
-      name: '',
+      name:'',
       staff_id: '',
       contact_no: '',
       password: '',
+      confirmPwd:'',
       errors: {}
     }
 
     this.onChange = this.onChange.bind(this)
     this.onSubmit = this.onSubmit.bind(this)
   }
+
+  validate(){
+   /// let input = this.state.input;
+    let errors = {};
+    let isValid = true;
+
+    if (!this.state.name) {
+      isValid = false;
+      errors["name"] = "Please enter your name.";
+    }
+
+    if (!this.state.contact_no) {
+      isValid = false;
+      errors["contact_no"] = "Please enter your contact_no.";
+    }
+
+
+    if (!this.state.staff_id) {
+      isValid = false;
+      errors["staff_id"] = "Please enter your staff-id";
+    }
+
+    // if (typeof input["email"] !== "undefined") {
+        
+    //   var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+    //   if (!pattern.test(input["email"])) {
+    //     isValid = false;
+    //     errors["email"] = "Please enter valid email address.";
+    //   }
+    // }
+
+    if (!this.state.password) {
+      isValid = false;
+      errors["password"] = "Please enter your password.";
+    }
+
+    if(!this.state.confirmPwd) {
+      isValid = false;
+      errors["confirm_password"] = "Please enter your confirm password.";
+    }
+    if (typeof this.state.password !== "undefined" && typeof this.state.confirmPwd !== "undefined") {
+          
+      if (this.state.password != this.state.confirmPwd) {
+        isValid = false;
+        errors["password"] = "Passwords don't match.";
+      }
+    } 
+
+    // if (!input["confirm_password"]) {
+    //   isValid = false;
+    //   errors["confirm_password"] = "Please enter your confirm password.";
+    // }
+
+    // if (typeof input["password"] !== "undefined" && typeof input["confirm_password"] !== "undefined") {
+        
+    //   if (input["password"] != input["confirm_password"]) {
+    //     isValid = false;
+    //     errors["password"] = "Passwords don't match.";
+    //   }
+    // } 
+
+    this.setState({
+      errors: errors
+    });
+
+    return isValid;
+}
+
+
+
+
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value })
@@ -41,12 +113,14 @@ class Register extends Component {
       toast.info('Please Login',{autoClose:3000 })
     
    }
-
+   if(this.validate()){
    // console.log(newUser)
     register(newUser,onSuccess).then(res => {
       this.props.history.push(`/login`)
     })
   }
+  }
+
 
   render() {
     return (
@@ -65,7 +139,10 @@ class Register extends Component {
                   value={this.state.name}
                   onChange={this.onChange}
                 />
+                 <div className="text-danger">{this.state.errors.name}</div>
               </div>
+
+              
               <div className="form-group">
                 <label htmlFor="name">Contact No.</label>
                 <input
@@ -76,6 +153,8 @@ class Register extends Component {
                   value={this.state.contact_no}
                   onChange={this.onChange}
                 />
+                 <div className="text-danger">{this.state.errors.contact_no}</div>
+
               </div>
               <div className="form-group">
                 <label htmlFor="staff_id">Staff_Id</label>
@@ -87,7 +166,10 @@ class Register extends Component {
                   value={this.state.staff_id}
                   onChange={this.onChange}
                 />
+
+                 <div className="text-danger">{this.state.errors.staff_id}</div>
               </div>
+
               <div className="form-group">
                 <label htmlFor="password">Password</label>
                 <input
@@ -97,7 +179,18 @@ class Register extends Component {
                   placeholder="Password"
                   value={this.state.password}
                   onChange={this.onChange}
-                />
+                /><div className="text-danger">{this.state.errors.password}</div>
+              </div>
+              <div className="form-group">
+                <label htmlFor="password"> Confirm Password</label>
+                <input
+                  type="password"
+                  className="form-control"
+                  name="confirmPwd"
+                  placeholder="Password"
+                  value={this.state.confirmPwd}
+                  onChange={this.onChange}
+                /><div className="text-danger">{this.state.errors.confirm_password}</div>
               </div>
               <button
                 type="submit"

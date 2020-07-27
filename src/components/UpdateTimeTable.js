@@ -5,6 +5,8 @@ import {Table,Form,Button,Modal} from 'react-bootstrap'
 import {toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
+import backgroundImg from './dd.png';
+
 
 toast.configure();
 
@@ -485,8 +487,19 @@ const fillForm=(
 
         const clzList=this.state.classes.map(clz=><option  value={clz.id} key={clz.id}>{clz.name}</option>)
 
+
+        const styles = {
+          backgroundContainer: {
+              backgroundImage: `url(${backgroundImg})`,
+              backgroundRepeat: 'no-repeat',
+              backgroundSize: 'auto',
+              //backgroundColor:'#E9967A',
+              height:'700px',
+             
+          }}
+
         return (
-            < div className="container">
+            < div className="container" style={styles.backgroundContainer }>
 
 <Modal show={this.state.show} >
 {fillForm}
@@ -548,6 +561,7 @@ const fillForm=(
                 </form>
               </div>
             </div>
+            <br></br>
            
           {this.state.tableDisplay? timeTable:null}
 
