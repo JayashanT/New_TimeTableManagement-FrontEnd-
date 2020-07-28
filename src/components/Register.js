@@ -58,10 +58,12 @@ class Register extends Component {
       errors["password"] = "Please enter your password.";
     }
 
-    if(!this.state.confirmPwd) {
+  
+    if (!this.state.confirmPwd) {
       isValid = false;
       errors["confirm_password"] = "Please enter your confirm password.";
     }
+
     if (typeof this.state.password !== "undefined" && typeof this.state.confirmPwd !== "undefined") {
           
       if (this.state.password != this.state.confirmPwd) {
@@ -70,10 +72,7 @@ class Register extends Component {
       }
     } 
 
-    // if (!input["confirm_password"]) {
-    //   isValid = false;
-    //   errors["confirm_password"] = "Please enter your confirm password.";
-    // }
+   
 
     // if (typeof input["password"] !== "undefined" && typeof input["confirm_password"] !== "undefined") {
         

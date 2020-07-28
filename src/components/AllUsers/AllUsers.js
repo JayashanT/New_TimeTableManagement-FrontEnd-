@@ -8,6 +8,7 @@ import jwt_decode from 'jwt-decode'
 import {Form} from 'react-bootstrap'
 import {toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import EditUser from './EditUser';
 
 
 
@@ -29,7 +30,9 @@ export class AllUsers extends Component {
               subjectId:0,
              
              addTeacherform:false,
-             addTeacherSubject:false
+             addTeacherSubject:false,
+
+             displayEditForm:false
         }
     }
     
@@ -116,7 +119,7 @@ console.log('aaa',a)
 
     render() {
 
-
+//****************Add user Form */
     let addUserForm=(
     <div style={{width:'500px'}}>
     <div className="container">
@@ -185,6 +188,90 @@ console.log('aaa',a)
   </div>
   )
 
+  //**************Edit user Form ****************/
+const editUserForm=(
+  <div className="container">
+        <div className="row">
+          <div className="col-md-6 mt-5 mx-auto">
+            {/* <form noValidate onSubmit={this.onSubmit}> */}
+            <form>
+              <h1 className="h3 mb-3 font-weight-normal">Edit User</h1>
+              <div className="form-group">
+                <label htmlFor="name">Name</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  name="name"
+                  placeholder="Enter your  name"
+                  value={this.state.name}
+                  onChange={this.onChange}
+                />
+                 {/* <div className="text-danger">{this.state.errors.name}</div> */}
+              </div>
+
+              
+              <div className="form-group">
+                <label htmlFor="name">Contact No.</label>
+                <input
+                  type="tel"
+                  className="form-control"
+                  name="contact_no"
+                  placeholder="Enter Contact number"
+                  value={this.state.contact_no}
+                  onChange={this.onChange}
+                />
+                 {/* <div className="text-danger">{this.state.errors.contact_no}</div> */}
+
+              </div>
+              <div className="form-group">
+                <label htmlFor="staff_id">Staff_Id</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  name="staff_id"
+                  placeholder="Enter Id"
+                  value={this.state.staff_id}
+                  onChange={this.onChange}
+                />
+
+                 {/* <div className="text-danger">{this.state.errors.staff_id}</div> */}
+              </div>
+
+              {/* <div className="form-group">
+                <label htmlFor="password">Password</label>
+                <input
+                  type="password"
+                  className="form-control"
+                  name="password"
+                  placeholder="Password"
+                  value={this.state.password}
+                  onChange={this.onChange}
+                /><div className="text-danger">{this.state.errors.password}</div>
+              </div>
+              <div className="form-group">
+                <label htmlFor="password"> Confirm Password</label>
+                <input
+                  type="password"
+                  className="form-control"
+                  name="confirmPwd"
+                  placeholder="Password"
+                  value={this.state.confirmPwd}
+                  onChange={this.onChange}
+                /><div className="text-danger">{this.state.errors.confirm_password}</div>
+              </div> */}
+              <button
+                type="submit"
+                className="btn btn-lg btn-primary btn-block"
+              >
+               Save
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+)
+
+
 
 
 const subjectList=this.state.subjects.map(sub=><option  value={sub.id} key={sub.id}>{sub.name}</option>)
@@ -238,13 +325,19 @@ const userList=this.state.users.map(user=>
   <Card.Text>
  User Id: {user.id}
   </Card.Text>
-  <Button variant="danger">Delete User</Button>
+  <Button variant="danger" style={{marginRight:'5px'}}>Delete User</Button>
+  <Button variant="success"
+  onClick={()=>this.setState({
+    name:user.name,staff_id:user.staff_Id,contact_no:user.contact_No,
+    password:user.password,userId:user.id,
+    roleId:user.role_Id,displayEditForm:true})} >Edit User</Button>
 </Card.Body>
 </Card>
+
 </div>
 )
 
-        return (
+       { return !this.state.displayEditForm? (
             <div className='inLine'>
              <Button 
              onClick={()=>{this.setState({addTeacherform:true})}}
@@ -254,10 +347,18 @@ const userList=this.state.users.map(user=>
                {/* {userList} */}
                  {this.state.addTeacherSubject? userAddSubjectForm:null}
                
-                
+             
                
             </div>
-        )
+        ):<EditUser
+         name={this.state.name} 
+         contact_no={this.state.contact_no}
+         staff_id={this.state.staff_id}
+         password={this.state.password}
+         userId={this.state.userId}
+         roleId={this.state.roleId}
+        />
+       }
     }
 }
 

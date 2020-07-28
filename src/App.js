@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import {Switch} from 'react-router-dom'
 
 import Navbar from './components/Navbar'
-import Landing from './components/Landing'
+import Landing from './components/HomeBody/Landing'
 import Login from './components/Login'
 import Register from './components/Register'
 import Profile from './components/Profile/Profile'
@@ -12,7 +12,7 @@ import Timetable from './components/Timetable'
 import Timetable2 from './components/Timetable2'
 import ViewTimeTable from './components/ViewTimeTable'
 import Admin from './components/Admin'
-import AllUsers from './components/AllUsers'
+import AllUsers from './components/AllUsers/AllUsers'
 import Subject from './components/Subject'
 
 import Resources from './components/Resource/Resources'
@@ -24,6 +24,7 @@ import TeacherTimeTable from './components/TeacherTimeTable'
 import UpdateTimeTable from './components/UpdateTimeTable'
 
 import Classes from './components/Class/Classes'
+import EditUser from './components/AllUsers/EditUser'
 
 
 class App extends Component {
@@ -50,6 +51,7 @@ class App extends Component {
             <Route exact path="/teacherTimetable" component={TeacherTimeTable} />
             <Route exact path="/UpadteTimeTable" component={UpdateTimeTable} />
             <Route exact path="/classes" component={Classes} />
+            <Route exact path="/editProfile" component={EditUser} />
             <Route component={Error}/>
           {/* </div> */}
           </Switch>

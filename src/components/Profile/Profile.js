@@ -4,7 +4,7 @@ import jwt_decode from 'jwt-decode'
 import { Link } from 'react-router-dom'
 import {Button,Card} from 'react-bootstrap'
 import adminImg from './aa.png';
-import teacherImg from './cc.jpg';
+
 import Button2 from '@material-ui/core/Button';
 
 
@@ -76,7 +76,7 @@ class Profile extends Component {
           </Link></td>
 
           <td><Link to="/UpadteTimeTable" className="nav-link">
-                <Button style={styles.button} variant="success">Upadte Time Table</Button>
+                <Button style={styles.button} variant="success">Edit Time Table</Button>
           </Link></td>
 
 {/* <td><Link to="/admin" className="nav-link">
@@ -162,8 +162,10 @@ const teacherViewMytable=(
           </div>
         <div >
           {/* <Card style={{ width: '18rem' ,height:'300px',marginLeft:'35px',backgroundColor:'#E0FFFF'}}> */}
+      <Link to="/editProfile" className="nav-link">
   <Card.Img variant="top"style={{height:"100px", borderRadius: '50%',width:'8rem',margin:'5px'}} 
   src={adminImg}/>
+  </Link>
   <Card.Body>
     <Card.Title>{this.state.first_name}</Card.Title>
     <Card.Text>
