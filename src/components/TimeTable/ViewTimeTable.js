@@ -56,7 +56,7 @@ export class ViewTimeTable extends Component {
          this.setState({slots:res.data.slot,tableDisplay:true},
           ()=>{
            console.log(this.state.slots)
-           this.viewTimeTable();
+           this.viewTimeTable();  //put slot in correct varible(according to position)
           })
 
       //  console.log("aaa",this.state.slots2)

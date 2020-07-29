@@ -27,7 +27,8 @@ export class UpdateTimeTable extends Component {
         
 
            
-           grade:1,
+          //  grade:1,
+           grade:null,
            classId:0,
            slots:[],
            subjectId:0,
@@ -54,6 +55,9 @@ timeTableId:0,
           },
 
            tableDisplay:false,
+
+
+           errors:{}
            
         }
       }
@@ -98,22 +102,39 @@ timeTableId:0,
 
 
 
-    onChange=(e)=>{
+onChange=(e)=>{
  
   
         this.setState({ [e.target.name]: e.target.value })
         console.log("PPPPp")
       }
-
-      onChange2=(e)=>{
+ onChange2=(e)=>{
  
   
           this.state.slot.teacherId=e.target.value
        
       }
-
-      onSubmit=(e)=>{
+onValidate(){
+        let errors = {};
+        let isValid = true;
+      
+        if(!this.state.grade){
+          isValid=false
+          errors["grade"]="Please enter grade"
+        }
+        if(!this.state.classId){
+          isValid=false
+          errors["className"]="Please enter className"
+        }
+      this.setState({errors:errors})
+      
+      return isValid;
+      
+      }
+      
+onSubmit=(e)=>{
         e.preventDefault()
+        if(this.onValidate()){
        console.log(this.state)
        axios.get(`https://localhost:44396/api/TimeTable/GetTimeTableDetailsByClassId/${this.state.classId}`)
        .then(res=>{
@@ -131,12 +152,13 @@ timeTableId:0,
          toast.error('Time Table does not exit yet, for this class',{autoClose:5000 })//5000 means close notification after 3 second
          
        })
+      }
           
         }
 
 
 
-    getClassInGrade=(grade)=>{
+getClassInGrade=(grade)=>{
         console.log("Garde=",grade)
       
         axios.get(`https://localhost:44396/api/class/GetClassesRelateToGrade/${grade}`)
@@ -538,6 +560,7 @@ const fillForm=(
                       
                      </Form.Control>
                     <br />
+                    <div className='text-danger'>{this.state.errors.grade}</div>
                     </div>
                   <div className="form-group">
                   <label htmlFor="className">Class Name</label>
@@ -550,6 +573,7 @@ const fillForm=(
                       
                      </Form.Control>
                     <br />
+                    <div className='text-danger'>{this.state.errors.className}</div>
                     </div>
 
                   <button

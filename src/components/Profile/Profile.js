@@ -110,6 +110,13 @@ class Profile extends Component {
         MODIFY RESOURCES
       </Button>
       </Link></td>
+<br/>
+<td>
+      <Link to="/changes" className="nav-link">
+      <Button variant="danger"  style={styles.button} >
+        Relief
+      </Button>
+      </Link></td>
 
 
 

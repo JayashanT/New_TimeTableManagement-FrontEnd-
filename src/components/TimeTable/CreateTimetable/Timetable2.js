@@ -29,7 +29,7 @@ export class Timetable2 extends Component {
     }
 
 //To set timeTable Id
-static getDerivedStateFromProps(props,state){
+ static getDerivedStateFromProps(props,state){
      
  console.log(props.timeTableId)
   state.slot.timeTableId=props.timeTableId
@@ -68,9 +68,9 @@ static getDerivedStateFromProps(props,state){
 
 handleClose = () => this.setState({show:false});
 
-value;
-Period_No;
-
+ value;
+ Period_No;
+ //SubjectId;
 
 handleShow = (a,periodNo) => {
   this.value=a
@@ -113,11 +113,11 @@ onSubmit=(e)=>{
 
 
 onChange=(e,index)=> {
-  console.log("GGGGGGG")
+ // console.log("GGGGGGG")
 const subId=e.target.value;
   axios.get(`https://localhost:44396/api/subject/${subId}`)
   .then(res=>{
-     console.log('ssss',res.data.name)
+    // console.log('ssss',res.data.name)
     this.state.subjects4[index]=res.data.name;
     
   }).catch(err=>{console.log(err)})

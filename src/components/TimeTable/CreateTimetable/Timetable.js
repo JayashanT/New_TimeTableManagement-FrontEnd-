@@ -105,9 +105,9 @@ onSubmit=(e)=>{
 axios.post('https://localhost:44396/api/TimeTable',newTimeTable)
       .then(res=>{
   
-        this.setState({timeTableId:res.data.id})
+        this.setState({timeTableId:res.data.id,visible:false})
         
-        this.setState({visible:false}) 
+        //this.setState({visible:false}) 
 
        // this.props.history.push(`/timeTable2`)
       }).catch(err=>{

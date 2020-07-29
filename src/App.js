@@ -26,6 +26,8 @@ import UpdateTimeTable from './components/TimeTable/UpdateTimeTable'
 import Classes from './components/Class/Classes'
 import EditUser from './components/AllUsers/EditUser'
 
+import Changes from'./components/Changes'
+
 
 class App extends Component {
   render() {
@@ -52,6 +54,8 @@ class App extends Component {
             <Route exact path="/UpadteTimeTable" component={UpdateTimeTable} />
             <Route exact path="/classes" component={Classes} />
             <Route exact path="/editProfile" component={EditUser} />
+
+            <Route exact path='/changes' component={Changes}/>
             <Route component={Error}/>
           {/* </div> */}
           </Switch>
