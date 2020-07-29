@@ -100,8 +100,9 @@ console.log(this.state)
               <h1 className="h3 mb-3 font-weight-normal"
               onClick={()=>this.setState({a:false})}
                >Edit User/</h1>
+               
               <h2 className="text-danger"
-              onClick={()=>this.setState({a:true})}
+              onClick={()=>this.setState({a:!this.state.a})}
               >change password</h2>
               
               <div className="form-group text-info">

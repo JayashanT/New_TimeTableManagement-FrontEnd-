@@ -16,8 +16,8 @@ class Login extends Component {
   constructor() {
     super()
     this.state = {
-      Staff_Id: '',
-      password: '',
+      Staff_Id: null,
+      password: null,
       errors: {}
     }
 
@@ -28,6 +28,26 @@ class Login extends Component {
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value })
   }
+
+onValidate(){
+  let errors = {};
+  let isValid = true;
+
+  if(!this.state.Staff_Id){
+    isValid=false
+    errors["staff_id"]="Please enter your staff-id"
+  }
+  if(!this.state.password){
+    isValid=false
+    errors["password"]="Please enter your password"
+  }
+this.setState({errors:errors})
+
+return isValid;
+
+}
+
+
   onSubmit=(e) =>{
     e.preventDefault()
 
@@ -48,21 +68,18 @@ class Login extends Component {
 }
 
 
-    login(user,onSuccess,onFail).then(res => {
+ if(this.onValidate()){login(user,onSuccess,onFail).then(res => {
        
-      
       if (res) {
-       
         console.log(res)
-      
-        this.props.history.push(`/profile`)
+          this.props.history.push(`/profile`)
       }else{
         this.setState({
           Staff_Id:'',
           password:''
         })
       }
-    })
+    })}
   }
 
   render() {
@@ -86,6 +103,7 @@ class Login extends Component {
                   value={this.state.Staff_Id}
                   onChange={this.onChange}
                 />
+                <div className='text-danger'>{this.state.errors.staff_id}</div>
               </div>
               <div className="form-group">
                 <label htmlFor="password">Password</label>
@@ -97,6 +115,7 @@ class Login extends Component {
                   value={this.state.password}
                   onChange={this.onChange}
                 />
+                <div className='text-danger' >{this.state.errors.password}</div>
               </div>
               <button
                 type="submit"

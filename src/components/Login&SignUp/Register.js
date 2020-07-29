@@ -24,7 +24,7 @@ class Register extends Component {
   }
 
   validate(){
-   /// let input = this.state.input;
+  
     let errors = {};
     let isValid = true;
 
@@ -32,11 +32,17 @@ class Register extends Component {
       isValid = false;
       errors["name"] = "Please enter your name.";
     }
-
+   
+    var phoneno = /^\d{10}$/
     if (!this.state.contact_no) {
+    
       isValid = false;
       errors["contact_no"] = "Please enter your contact_no.";
-    }
+
+    }else{ if(!this.state.contact_no.match(phoneno))
+      {isValid=false
+      errors["contact_no"] = "Please enter valid contact_no.";
+    }}
 
 
     if (!this.state.staff_id) {
@@ -44,14 +50,6 @@ class Register extends Component {
       errors["staff_id"] = "Please enter your staff-id";
     }
 
-    // if (typeof input["email"] !== "undefined") {
-        
-    //   var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
-    //   if (!pattern.test(input["email"])) {
-    //     isValid = false;
-    //     errors["email"] = "Please enter valid email address.";
-    //   }
-    // }
 
     if (!this.state.password) {
       isValid = false;
@@ -72,15 +70,6 @@ class Register extends Component {
       }
     } 
 
-   
-
-    // if (typeof input["password"] !== "undefined" && typeof input["confirm_password"] !== "undefined") {
-        
-    //   if (input["password"] != input["confirm_password"]) {
-    //     isValid = false;
-    //     errors["password"] = "Passwords don't match.";
-    //   }
-    // } 
 
     this.setState({
       errors: errors

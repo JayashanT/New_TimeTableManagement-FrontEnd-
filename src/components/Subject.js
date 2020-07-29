@@ -19,7 +19,7 @@ constructor(props) {
          subjects:[],
          addSubject:false,
          editSubject:false,
-         subjectName:"",
+         subjectName:null,
          medium:'Sinhala',
          subjectId:0  //for edit subject
     }
@@ -41,14 +41,15 @@ componentDidMount(){
 
 //To display add Subject form
 change=()=>{
-    this.setState({addSubject:true},()=>{console.log("dhdh",this.state.addSubject)})
+    this.setState({addSubject:!this.state.addSubject},()=>{console.log("dhdh",this.state.addSubject)})
     
     
 }
 
 //To display Edit Subject form
-change2=(subId)=>{
-  this.setState({editSubject:true,subjectId:subId})
+change2=(subId,subjectName)=>{
+  console.log("aaa",subjectName)
+  this.setState({editSubject:!this.state.editSubject,subjectId:subId,subjectName:subjectName})
   
   console.log("dhdh",this.state.addSubject)
 }
@@ -76,7 +77,7 @@ OnDeleteSubject=(subjectId)=>{
               console.log("Success")
           })
           .catch(err=>{
-              console.log(err)
+            toast.error('Subject Delete Unsuccessful',{autoClose:3000 })
           })
 }
 
@@ -98,6 +99,7 @@ axios.put('https://localhost:44396/api/subject',Updatedsubject)
        // this.refreshPage();
     }).catch(err=>{
       console.log(err)
+      toast.error('Subject name change Unsuccessfully',{autoClose:3000 })
     })
 
 
@@ -121,6 +123,7 @@ console.log(newSubject)
     })
     .catch(err=>{
         console.log(err)
+        toast.error('Subject add unuccessful,Try again',{autoClose:3000 })
     })
 }
 
@@ -141,6 +144,7 @@ console.log(newSubject)
    placeholder="Enter new subject name"
    type="text"
    name='subjectName'
+   value={this.state.subjectName}
    onChange={this.onChange}
     />
   <Button style={{margin:'5px'}} 
@@ -166,12 +170,12 @@ console.log(newSubject)
 {subject.name} </div>
 <Button style={{marginLeft:'115px'}} 
 variant="outline-danger" 
-onClick={()=>this.OnDeleteSubject(subject.id )} >
+onClick={()=>this.OnDeleteSubject(subject.id)} >
     Delete Subject</Button>
 
     <Button style={{marginLeft:'25px'}} 
 variant="outline-success" 
-onClick={()=>this.change2(subject.id)}
+onClick={()=>this.change2(subject.id,subject.name )}
  >
     Edit Subject</Button>
 
@@ -194,6 +198,7 @@ onClick={()=>this.change2(subject.id)}
  placeholder="Enter subject name"
  type="text"
  name='subjectName'
+
   onChange={this.onChange} />
 <Button style={{margin:'5px'}} 
 type="submit" 

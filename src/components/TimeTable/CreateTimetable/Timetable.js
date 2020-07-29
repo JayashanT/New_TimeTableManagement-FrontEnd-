@@ -22,12 +22,15 @@ export class Timetable extends Component {
     this.state = {
        classes:[],
        name:'',
-       grade:1,
+       grade:null,
        classId:0,
        Admin_Id:0,
        visible:true,
-       timeTableId:0
+       timeTableId:0,
+
+       errors:{}
     }
+  
   }
   
   componentDidMount(){
@@ -67,7 +70,23 @@ getClassInGrade=(grade)=>{
       this.setState({errorMsg:"This is get request Error"})
   })
 }
+onValidate(){
+  let errors = {};
+  let isValid = true;
 
+  if(!this.state.name){
+    isValid=false
+    errors["name"]="Please enter time table name"
+  }
+  if(!this.state.grade){
+    isValid=false
+    errors["grade"]="Please enter grade"
+  }
+this.setState({errors:errors})
+
+return isValid;
+
+}
 
 
 onSubmit=(e)=>{
@@ -82,7 +101,7 @@ onSubmit=(e)=>{
   }
 
   // this.setState({visible:false})
- 
+ if(this.onValidate()){
 axios.post('https://localhost:44396/api/TimeTable',newTimeTable)
       .then(res=>{
   
@@ -96,6 +115,8 @@ axios.post('https://localhost:44396/api/TimeTable',newTimeTable)
      
        console.log(err)
       })
+
+    }
 
 //this.props.history.push(`/timeTable2`)
  console.log(newTimeTable)
@@ -138,6 +159,7 @@ axios.post('https://localhost:44396/api/TimeTable',newTimeTable)
                        value={this.state.name}
                         onChange={this.onChange}
                     />
+                     <div className="text-danger">{this.state.errors.name}</div>
                   </div>
                   {/* <div className="form-group">
                     <label htmlFor="garde">Grade</label>
@@ -155,7 +177,7 @@ axios.post('https://localhost:44396/api/TimeTable',newTimeTable)
                     />
                   </div> */}
 
-       < div className="form-group">
+       < div className="form-group text-info">
                   <label htmlFor="className">Grade</label>
                   <Form.Control as="select"
                   name='grade'
@@ -181,13 +203,14 @@ axios.post('https://localhost:44396/api/TimeTable',newTimeTable)
                       
                      </Form.Control>
                     <br />
+                    <div className="text-danger">{this.state.errors.grade}</div>
                     </div>
 
 
 
 
                   <div className="form-group">
-                  <label htmlFor="className">Class Name</label>
+                  <label htmlFor="className " className="text-info">Class Name</label>
                   <Form.Control as="select"
                   name='classId'
                   // value={this.state.classId}
