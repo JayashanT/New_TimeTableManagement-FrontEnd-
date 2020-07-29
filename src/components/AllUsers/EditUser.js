@@ -26,7 +26,9 @@ constructor(props) {
              password:'123'
          },
          a:false,
-         logedUserId:1
+         logedUserId:1,
+
+         errors:{}
     }
 }
 
@@ -34,6 +36,8 @@ componentDidMount(){
   const token = localStorage.usertoken
     const decoded = jwt_decode(token)
   this.setState({logedUserId:decoded.Role_Id})
+
+ 
 }
 
 
@@ -41,18 +45,94 @@ onChange=(e)=>{
   let user=this.state.user;
   user[e.target.name]=e.target.value;
   this.setState({
+     
       user
   })
 
 }
 
+
+onValidate(){
+  
+  let errors = {};
+  let isValid = true;
+
+  if (!this.state.user.name) {
+    isValid = false;
+    errors["name"] = "Please enter your name.";
+  }
+ 
+  var phoneno = /^\d{10}$/
+  if (!this.state.user.contact_no) {
+  
+    isValid = false;
+    errors["contact_no"] = "Please enter your contact_no.";
+
+  }else{ if(!this.state.user.contact_no.match(phoneno))
+    {isValid=false
+    errors["contact_no"] = "Please enter valid contact_no.";
+  }}
+
+
+  if (!this.state.user.staff_id) {
+    isValid = false;
+    errors["staff_id"] = "Please enter your staff-id";
+  }
+
+
+  // if (!this.state.password) {
+  //   isValid = false;
+  //   errors["password"] = "Please enter your password.";
+  // }
+
+
+  // if (!this.state.confirmPwd) {
+  //   isValid = false;
+  //   errors["confirm_password"] = "Please enter your confirm password.";
+  // }
+
+  // if (typeof this.state.password !== "undefined" && typeof this.state.confirmPwd !== "undefined") {
+        
+  //   if (this.state.password != this.state.confirmPwd) {
+  //     isValid = false;
+  //     errors["password"] = "Passwords don't match.";
+  //   }
+  // } 
+
+
+  this.setState({
+    errors: errors
+  });
+
+  return isValid;
+}
+
 onSubmit=(e)=>{
 e.preventDefault();
 console.log(this.state)
+
+const token = localStorage.usertoken
+const decoded = jwt_decode(token)
+//console.log(decoded.Role_Id)
+
+if(typeof this.state.user.role_Id=="undefined"){
+  console.log('jjjjjj')
+  this.setState({
+    user:{
+    ...this.state.user,
+     role_Id:decoded.Role_Id,
+    id:decoded.Id
+  }},()=>{console.log('ggg',this.state.user)})
+}
+
+if(this.onValidate()){
  axios.put('https://localhost:44396/api/user',this.state.user)
          .then(res=>{
              console.log(res.data)
              toast.success('User profile update Successful',{autoClose:3000 })
+            //  localStorage.removeItem('usertoken')
+            //  localStorage.setItem('usertoken', res.data)
+
          }).catch(err=>{
              console.log(err)
              toast.error('User profile update UnSuccessful,Try again',{autoClose:3000 })
@@ -68,11 +148,13 @@ console.log(this.state)
         axios.post('https://localhost:44396/api/user/ChangePassword',user)
           .then(res=>{
             console.log("succcc")
+            // localStorage.removeItem('usertoken')
+            // this.props.history.push(`/`)
           }).catch(err=>{
             console.log(err)
           })
       }   
-
+    }
 }
 
     render() {
@@ -115,7 +197,7 @@ console.log(this.state)
                   value={this.state.user.name}
                   onChange={this.onChange}
                 />
-                 {/* <div className="text-danger">{this.state.errors.name}</div> */}
+                 <div className="text-danger">{this.state.errors.name}</div>
               </div>
 
               
@@ -129,7 +211,7 @@ console.log(this.state)
                   value={this.state.user.contact_no}
                   onChange={this.onChange}
                 /><br/>
-                 {/* <div className="text-danger">{this.state.errors.contact_no}</div> */}
+                 <div className="text-danger">{this.state.errors.contact_no}</div>
 
               </div>
               <div className="form-group text-info">
@@ -142,6 +224,7 @@ console.log(this.state)
                   value={this.state.user.staff_id}
                   onChange={this.onChange}
                 /> 
+                  <div className="text-danger">{this.state.errors.staff_id}</div>
               </div>
 
        { this.state.logedUserId==1 ?(
