@@ -22,7 +22,7 @@ constructor(props) {
 
     this.state = {
          resources:[],
-         resourceName:'',
+         resourceName:null,
          resourceType:'',
          addResource:false,
 
@@ -167,7 +167,7 @@ let editResourceForm=(
           </div>
           
        < div className="form-group">
-                  <label htmlFor="className">Grade</label>
+                  <label htmlFor="className">Type</label>
                   <Form.Control as="select"
                   name='resourceType'
                 //   value={this.state.resourceType}

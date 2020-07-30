@@ -68,7 +68,8 @@ return isValid;
 }
 
 
- if(this.onValidate()){login(user,onSuccess,onFail).then(res => {
+ if(this.onValidate()){
+   login(user,onSuccess,onFail).then(res => {
        
       if (res) {
         console.log(res)

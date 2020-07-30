@@ -32,7 +32,9 @@ export class AllUsers extends Component {
              addTeacherform:false,
              addTeacherSubject:false,
 
-             displayEditForm:false
+             displayEditForm:false,
+
+             errors:{}
         }
     }
     
@@ -60,6 +62,48 @@ onChange=(e)=> {
   this.setState({ [e.target.name]: e.target.value })
 }
 
+validate(){
+  
+  let errors = {};
+  let isValid = true;
+
+  if (!this.state.name) {
+    isValid = false;
+    errors["name"] = "Please enter your name.";
+  }
+ 
+  var phoneno = /^\d{10}$/
+  if (!this.state.contact_no) {
+  
+    isValid = false;
+    errors["contact_no"] = "Please enter your contact_no.";
+
+  }else{ if(!this.state.contact_no.match(phoneno))
+    {isValid=false
+    errors["contact_no"] = "Please enter valid contact_no.";
+  }}
+
+
+  if (!this.state.staff_id) {
+    isValid = false;
+    errors["staff_id"] = "Please enter your staff-id";
+  }
+
+
+  if (!this.state.password) {
+    isValid = false;
+    errors["password"] = "Please enter your password.";
+  }
+
+
+  this.setState({
+    errors: errors
+  });
+
+  return isValid;
+}
+
+
 
  onSubmit=(e)=>{
      e.preventDefault();
@@ -71,7 +115,7 @@ onChange=(e)=> {
       Role_Id :2
 
      }
-
+     if(this.validate()){
      axios.post('https://localhost:44396/api/user',teacher)
            .then(res=>{
             
@@ -84,6 +128,8 @@ onChange=(e)=> {
              console.log(err)
            })
  }
+
+}
 
 //To Reload page
 refreshPage=()=> {
@@ -119,7 +165,7 @@ console.log('aaa',a)
 
     render() {
 
-//****************Add user Form */
+//****************Add user Form **************/
     let addUserForm=(
     <div style={{width:'500px'}}>
     <div className="container">
@@ -137,6 +183,7 @@ console.log('aaa',a)
                value={this.state.name}
               onChange={this.onChange}
             />
+               <div className="text-danger">{this.state.errors.name}</div>
           </div>
           <div className="form-group">
             <label htmlFor="name">Contact No.</label>
@@ -148,6 +195,7 @@ console.log('aaa',a)
                value={this.state.contact_no}
                onChange={this.onChange}
             />
+               <div className="text-danger">{this.state.errors.contact_no}</div>
           </div>
           <div className="form-group">
             <label htmlFor="staff_id">Staff_Id</label>
@@ -159,6 +207,7 @@ console.log('aaa',a)
                value={this.state.staff_id}
                onChange={this.onChange}
             />
+            <div className="text-danger">{this.state.errors.staff_id}</div>
           </div>
           <div className="form-group">
             <label htmlFor="password">Password</label>
@@ -170,6 +219,7 @@ console.log('aaa',a)
               value={this.state.password}
                onChange={this.onChange}
             />
+            <div className="text-danger">{this.state.errors.password}</div>
           </div>
           <button
              type="submit"

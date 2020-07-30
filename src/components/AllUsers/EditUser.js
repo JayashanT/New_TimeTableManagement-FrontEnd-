@@ -116,7 +116,7 @@ const decoded = jwt_decode(token)
 //console.log(decoded.Role_Id)
 
 if(typeof this.state.user.role_Id=="undefined"){
-  console.log('jjjjjj')
+ // console.log('jjjjjj')
   this.setState({
     user:{
     ...this.state.user,

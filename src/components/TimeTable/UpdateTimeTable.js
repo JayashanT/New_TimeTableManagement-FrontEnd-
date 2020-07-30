@@ -199,7 +199,9 @@ getClassInGrade=(grade)=>{
       viewTimeTable=()=>{
         this.setState({
           
-          e1:this.state.slots.find(({period_No})=>period_No==='1_1').id,
+          e1:this.state.slots.find(({period_No})=>period_No==='1_1')?this.state.slots.find(({period_No})=>period_No==='1_1').id:null,
+          e2:this.state.slots.find(({period_No})=>period_No==='2_1')?this.state.slots.find(({period_No})=>period_No==='2_1').id:null,
+          e3:this.state.slots.find(({period_No})=>period_No==='3_1')?this.state.slots.find(({period_No})=>period_No==='3_1').id:null,
 
          
         a1:this.state.slots.find(({period_No})=>period_No==='1_1')?this.state.slots.find(({period_No})=>period_No==='1_1').subject_Name:null,
@@ -223,7 +225,7 @@ getClassInGrade=(grade)=>{
         b7:this.state.slots.find(({period_No})=>period_No==='2_4')?this.state.slots.find(({period_No})=>period_No==='2_4').subject_Name:null,
         b8:this.state.slots.find(({period_No})=>period_No==='3_4')?this.state.slots.find(({period_No})=>period_No==='3_4').subject_Name:null,
         b9:this.state.slots.find(({period_No})=>period_No==='4_4')?this.state.slots.find(({period_No})=>period_No==='4_4').subject_Name:null,
-        b1: this.state.slots.find(({period_No})=>period_No==='5_4')?this.state.slots.find(({period_No})=>period_No==='5_4').subject_Name:null,
+        b10: this.state.slots.find(({period_No})=>period_No==='5_4')?this.state.slots.find(({period_No})=>period_No==='5_4').subject_Name:null,
 
      
         
@@ -416,8 +418,8 @@ const fillForm=(
               <td>7.30-8.15</td>
         {/* <td onClick={()=>{this.setState({a: this.state.slots.find(({period_No})=>period_No==='2_1').subject_Id},()=>console.log("dhdj"))}}>{this.state.a}</td> */}
         <td onClick={()=>this.handleShow(this.state.e1,'1_1')}>{this.state.a1}</td>
-              <td >{this.state.a2}</td>
-              <td >{this.state.a3}</td>
+              <td  onClick={()=>this.handleShow(this.state.e2,'2_1')}>{this.state.a2}</td>
+              <td onClick={()=>this.handleShow(this.state.e3,'3_1')}>{this.state.a3}</td>
               <td >{this.state.a4}</td>
               <td >{this.state.a5}</td>
               

@@ -16,7 +16,7 @@ export class Timetable2 extends Component {
              
              
              slot:{
-               day:'default',
+               day:'Monday',
                sTime:'1:1',
                eTime:'2:1',
                periodNo:0,

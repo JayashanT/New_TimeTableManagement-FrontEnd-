@@ -6,6 +6,12 @@ import {Button,Card} from 'react-bootstrap'
 import adminImg from './aa.png';
 
 import Button2 from '@material-ui/core/Button';
+import axios from 'axios';
+import {toast} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
+
+toast.configure();
 
 
 class Profile extends Component {
@@ -16,7 +22,10 @@ class Profile extends Component {
       contact_no: '',
       staff_id: '',
       role_id:0,
-      errors: {}
+
+      makeAttendence:true,
+      errors: {},
+      User_Id:null
     }
   }
 
@@ -28,12 +37,30 @@ class Profile extends Component {
       first_name: decoded.Name,
       contact_no: decoded.Contact_No,
       staff_id: decoded.Staff_Id,
-      role_id:decoded.Role_Id
+      role_id:decoded.Role_Id,
+      User_Id:decoded.Id
     })
   
 
   }
 
+  markAttendence=()=>{
+
+console.log(this.state.User_Id)
+const a={
+  User_Id:this.state.User_Id
+}
+
+    axios.put('https://localhost:44396/api/Attendance',a)
+       .then(res=>{
+         console.log("succc")
+         this.setState({makeAttendence:false})
+         toast.success('Attendence mark Successfully',{autoClose:3000 })
+       }).catch(err=>{
+         console.log(err)
+         toast.error('Attendence mark unuccessful, try again',{autoClose:3000 })
+       })
+  }
 
 
   render() {
@@ -120,22 +147,6 @@ class Profile extends Component {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </div>
 )
 
@@ -147,11 +158,6 @@ const teacherViewMytable=(
 </Link></td>
 </div>
 )
-
-
-
-
-
 
 
 
@@ -183,36 +189,13 @@ const teacherViewMytable=(
     </Card.Text>
   </Card.Body>
 {/* </Card> */}
+{this.state.makeAttendence?( <button type="button" class="btn btn-danger"
+onClick={this.markAttendence}
+>Mark Attendence</button>):null}
+
 </div>
 
 
-
-
-
-
-
-
-          {/* <table className="table col-md-6 mx-auto">
-            <tbody>
-              <tr>
-                <td> Name</td>
-                <td>{this.state.first_name}</td>
-              </tr>
-              <tr>
-                <td>Contact number</td>
-                <td>{this.state.contact_no}</td>
-              </tr>
-              <tr>
-                <td>Staff Id</td>
-                <td>{this.state.staff_id}</td>
-              </tr>
-              <tr>
-                
-                <td>
-          </td>
-              </tr>
-            </tbody>
-          </table> */}
         </div>
       </div>
       </div>
